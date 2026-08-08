@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Vehicle Rental System Interface">
+    <title>Antigravity Rentals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <header class="glass-header">
+        <div class="container">
+            <h1><span class="highlight">Antigravity</span> Rentals</h1>
+            <p>Premium vehicles for your next journey.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="status-bar" id="status-bar">
+            Loading fleet data...
+        </div>
+
+        <section class="fleet-grid" id="fleet-grid">
+            <!-- Vehicle cards will be injected here by app.js -->
+        </section>
+    </main>
+
+    <!-- Modal for Renting/Returning -->
+    <div class="modal-overlay" id="action-modal">
+        <div class="glass-modal">
+            <button class="close-btn" id="close-modal">&times;</button>
+            <h2 id="modal-title">Action</h2>
+            
+            <div id="modal-content">
+                <!-- Dynamic Content injected here -->
+            </div>
+            
+            <div id="modal-error" class="error-msg"></div>
+            <div id="modal-success" class="success-msg"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
