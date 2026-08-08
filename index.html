@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VehicleRent — Premium Rental System</title>
+  <meta name="description" content="A modern vehicle rental management system for cars and bikes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">🚗</div>
+      <span class="logo-text">VehicleRent</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-btn active" data-section="dashboard" id="nav-dashboard">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">Dashboard</span>
+      </button>
+      <button class="nav-btn" data-section="fleet" id="nav-fleet">
+        <span class="nav-icon">🚘</span>
+        <span class="nav-label">Fleet</span>
+      </button>
+      <button class="nav-btn" data-section="rent" id="nav-rent">
+        <span class="nav-icon">🔑</span>
+        <span class="nav-label">Rent Vehicle</span>
+      </button>
+      <button class="nav-btn" data-section="return" id="nav-return">
+        <span class="nav-icon">↩️</span>
+        <span class="nav-label">Return Vehicle</span>
+      </button>
+      <button class="nav-btn" data-section="add" id="nav-add">
+        <span class="nav-icon">➕</span>
+        <span class="nav-label">Add Vehicle</span>
+      </button>
+      <button class="nav-btn" data-section="history" id="nav-history">
+        <span class="nav-icon">📋</span>
+        <span class="nav-label">History</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="version-badge">v2.0 Premium</div>
+    </div>
+  </aside>
+
+  <!-- ── Main Content ────────────────────────────────────── -->
+  <main class="main-content">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <h1 class="page-title" id="pageTitle">Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="globalSearch" class="search-input" placeholder="Search vehicles..." />
+        </div>
+        <div class="topbar-badge">
+          <span id="availableCount">0</span> available
+        </div>
+      </div>
+    </header>
+
+    <!-- ── SECTION: Dashboard ──────────────────────────── -->
+    <section class="section active" id="section-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card stat-total">
+          <div class="stat-icon">🚗</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-total">0</div>
+            <div class="stat-label">Total Fleet</div>
+          </div>
+          <div class="stat-glow"></div>
+        </div>
+        <div class="stat-card stat-available">
+          <div class="stat-icon">✅</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-available">0</div>
+            <div class="stat-label">Available</div>
+          </div>
+          <div class="stat-glow"></div>
+        </div>
+        <div class="stat-card stat-rented">
+          <div class="stat-icon">🔑</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-rented">0</div>
+            <div class="stat-label">Currently Rented</div>
+          </div>
+          <div class="stat-glow"></div>
+        </div>
+        <div class="stat-card stat-revenue">
+          <div class="stat-icon">💰</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-revenue">₹0</div>
+            <div class="stat-label">Total Revenue</div>
+          </div>
+          <div class="stat-glow"></div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- Available vehicles preview -->
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h2 class="dash-card-title">Available Now</h2>
+            <button class="link-btn" data-section="fleet">View All →</button>
+          </div>
+          <div class="mini-fleet" id="dashAvailable"></div>
+        </div>
+
+        <!-- Rented vehicles -->
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h2 class="dash-card-title">Currently Rented</h2>
+          </div>
+          <div class="rented-list" id="dashRented"></div>
+        </div>
+
+        <!-- Renter history -->
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h2 class="dash-card-title">Top Renters</h2>
+            <button class="link-btn" data-section="history">Full History →</button>
+          </div>
+          <div id="dashRenters"></div>
+        </div>
+
+        <!-- Pricing rules -->
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h2 class="dash-card-title">Pricing Rules</h2>
+          </div>
+          <div class="rules-list">
+            <div class="rule-item">
+              <span class="rule-icon">🚗</span>
+              <div><strong>Extra Seats</strong><br/>₹100/day per seat beyond 4</div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-icon">🏍️</span>
+              <div><strong>High CC Bikes</strong><br/>₹50/day surcharge if engine &gt; 150cc</div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-icon">📅</span>
+              <div><strong>Long-Term Discount</strong><br/>10% off for rentals &gt; 7 days</div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-icon">⭐</span>
+              <div><strong>Loyalty Discount</strong><br/>5% off for returning customers</div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-icon">⚠️</span>
+              <div><strong>Late Return Penalty</strong><br/>20% of base rate per extra day</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION: Fleet ──────────────────────────────── -->
+    <section class="section" id="section-fleet">
+      <div class="fleet-controls">
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all" id="filter-all">All</button>
+          <button class="filter-btn" data-filter="car" id="filter-car">Cars</button>
+          <button class="filter-btn" data-filter="bike" id="filter-bike">Bikes</button>
+          <button class="filter-btn" data-filter="available" id="filter-available">Available</button>
+          <button class="filter-btn" data-filter="rented" id="filter-rented">Rented</button>
+        </div>
+        <button class="btn-primary" id="fleetAddBtn">+ Add Vehicle</button>
+      </div>
+      <div class="vehicles-grid" id="vehiclesGrid"></div>
+      <div class="empty-state hidden" id="fleetEmpty">
+        <div class="empty-icon">🚗</div>
+        <p>No vehicles found.</p>
+      </div>
+    </section>
+
+    <!-- ── SECTION: Rent ────────────────────────────────── -->
+    <section class="section" id="section-rent">
+      <div class="form-container">
+        <div class="form-card">
+          <div class="form-card-header">
+            <div class="form-card-icon">🔑</div>
+            <div>
+              <h2>Rent a Vehicle</h2>
+              <p class="form-subtitle">Fill in the details to rent a vehicle from the fleet.</p>
+            </div>
+          </div>
+
+          <div class="form-body">
+            <div class="form-group">
+              <label class="form-label" for="rentVehicleSelect">Select Vehicle</label>
+              <select class="form-control" id="rentVehicleSelect">
+                <option value="">— Choose an available vehicle —</option>
+              </select>
+            </div>
+
+            <div class="vehicle-preview hidden" id="rentPreview">
+              <div class="preview-card" id="rentPreviewCard"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="rentRenterName">Renter Name</label>
+              <input type="text" class="form-control" id="rentRenterName" placeholder="e.g. Rahul Sharma" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="rentDays">Number of Days</label>
+              <input type="number" class="form-control" id="rentDays" min="1" max="365" placeholder="e.g. 5" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="rentStartDate">Start Date</label>
+              <input type="date" class="form-control" id="rentStartDate" />
+            </div>
+
+            <div class="cost-preview hidden" id="costPreview">
+              <div class="cost-breakdown" id="costBreakdown"></div>
+            </div>
+
+            <button class="btn-primary btn-full" id="rentSubmitBtn">🔑 Confirm Rental</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION: Return ─────────────────────────────── -->
+    <section class="section" id="section-return">
+      <div class="form-container">
+        <div class="form-card">
+          <div class="form-card-header">
+            <div class="form-card-icon">↩️</div>
+            <div>
+              <h2>Return a Vehicle</h2>
+              <p class="form-subtitle">Process a vehicle return and calculate the final bill.</p>
+            </div>
+          </div>
+
+          <div class="form-body">
+            <div class="form-group">
+              <label class="form-label" for="returnVehicleSelect">Select Rented Vehicle</label>
+              <select class="form-control" id="returnVehicleSelect">
+                <option value="">— Choose a rented vehicle —</option>
+              </select>
+            </div>
+
+            <div class="return-preview hidden" id="returnPreview">
+              <div class="preview-card" id="returnPreviewCard"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="returnActualDays">Actual Days Kept</label>
+              <input type="number" class="form-control" id="returnActualDays" min="1" placeholder="Leave blank to auto-calculate" />
+              <span class="form-hint">Leave blank to auto-calculate from start date</span>
+            </div>
+
+            <div class="return-bill hidden" id="returnBill"></div>
+
+            <button class="btn-danger btn-full" id="returnSubmitBtn">↩️ Process Return</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION: Add Vehicle ────────────────────────── -->
+    <section class="section" id="section-add">
+      <div class="form-container">
+        <div class="form-card">
+          <div class="form-card-header">
+            <div class="form-card-icon">➕</div>
+            <div>
+              <h2>Add New Vehicle</h2>
+              <p class="form-subtitle">Register a new vehicle to the fleet.</p>
+            </div>
+          </div>
+
+          <div class="form-body">
+            <div class="type-toggle-group">
+              <button class="type-toggle active" data-type="Car" id="typeToggleCar">🚗 Car</button>
+              <button class="type-toggle" data-type="Bike" id="typeToggleBike">🏍️ Bike</button>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="addVehicleNum">Vehicle Number</label>
+                <input type="text" class="form-control" id="addVehicleNum" placeholder="e.g. KA-01-AB-1234" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="addBrand">Brand / Model</label>
+                <input type="text" class="form-control" id="addBrand" placeholder="e.g. Maruti Swift" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="addBasePrice">Base Price / Day (₹)</label>
+                <input type="number" class="form-control" id="addBasePrice" min="1" placeholder="e.g. 800" />
+              </div>
+
+              <!-- Car field -->
+              <div class="form-group" id="carField">
+                <label class="form-label" for="addSeats">Number of Seats</label>
+                <input type="number" class="form-control" id="addSeats" min="1" max="50" placeholder="e.g. 5" />
+              </div>
+
+              <!-- Bike field -->
+              <div class="form-group hidden" id="bikeField">
+                <label class="form-label" for="addEngineCC">Engine CC</label>
+                <input type="number" class="form-control" id="addEngineCC" min="1" placeholder="e.g. 200" />
+              </div>
+            </div>
+
+            <div class="add-preview" id="addPreview"></div>
+
+            <button class="btn-primary btn-full" id="addSubmitBtn">➕ Add to Fleet</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION: History ────────────────────────────── -->
+    <section class="section" id="section-history">
+      <div class="history-grid">
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h2 class="dash-card-title">Rental Transactions</h2>
+            <button class="btn-outline btn-sm" id="clearHistoryBtn">Clear</button>
+          </div>
+          <div id="transactionList"></div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h2 class="dash-card-title">Renter Leaderboard</h2>
+          </div>
+          <div id="renterLeaderboard"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Toast Notifications ──────────────────────────── -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ── Confirm Modal ────────────────────────────────── -->
+  <div class="modal-overlay hidden" id="confirmModal">
+    <div class="modal">
+      <h3 id="confirmTitle">Confirm Action</h3>
+      <p id="confirmMessage"></p>
+      <div class="modal-actions">
+        <button class="btn-outline" id="confirmCancel">Cancel</button>
+        <button class="btn-danger" id="confirmOk">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
