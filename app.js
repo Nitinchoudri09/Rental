@@ -1,9 +1,3 @@
-// app.js
-
-// ─────────────────────────────────────────────────────────────────────────────
-// DATA MODELS
-// ─────────────────────────────────────────────────────────────────────────────
-
 class Vehicle {
   constructor(type, number, brand, basePrice, isAvailable = true, currentRental = null) {
     this.type = type;
@@ -13,14 +7,14 @@ class Vehicle {
     this.isAvailable = isAvailable;
     this.currentRental = currentRental;
   }
-  
+
   applyLongTermDiscount(total, days) {
     return days > 7 ? total * 0.9 : total;
   }
 
   latePenalty(actualDays, plannedDays) {
     const extra = Math.max(0, actualDays - plannedDays);
-    return extra * this.basePrice * 0.2; // 20% penalty
+    return extra * this.basePrice * 0.2; 
   }
 }
 
@@ -51,14 +45,10 @@ class Bike extends Vehicle {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SYSTEM MANAGER
-// ─────────────────────────────────────────────────────────────────────────────
-
 class RentalSystem {
   constructor() {
     this.fleet = [];
-    this.history = {}; // name -> count
+    this.history = {}; 
     this.transactions = [];
     this.loadData();
   }
@@ -116,7 +106,7 @@ class RentalSystem {
     vehicle.isAvailable = false;
     vehicle.currentRental = { renter, days, date: startDate };
     this.history[renter] = (this.history[renter] || 0) + 1;
-    
+
     this.transactions.unshift({ type: 'Rent', vehicle: number, renter, date: new Date().toLocaleDateString(), amount: final });
     this.saveData();
     return final;
@@ -130,13 +120,13 @@ class RentalSystem {
     actualDays = actualDays || rental.days;
 
     let gross = vehicle.calculateRental(actualDays);
-    const hasLoyalty = (this.history[rental.renter] || 0) > 1; // Already incremented on rent
+    const hasLoyalty = (this.history[rental.renter] || 0) > 1; 
     const finalRent = hasLoyalty ? gross * 0.95 : gross;
     const penalty = vehicle.latePenalty(actualDays, rental.days);
     const total = finalRent + penalty;
 
     this.transactions.unshift({ type: 'Return', vehicle: number, renter: rental.renter, date: new Date().toLocaleDateString(), amount: total });
-    
+
     vehicle.isAvailable = true;
     vehicle.currentRental = null;
     this.saveData();
@@ -149,23 +139,18 @@ class RentalSystem {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// UI CONTROLLER
-// ─────────────────────────────────────────────────────────────────────────────
-
 const sys = new RentalSystem();
 
-// Navigation
 document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    
+
     const target = e.currentTarget;
     target.classList.add('active');
     document.getElementById(`section-${target.dataset.section}`).classList.add('active');
     document.getElementById('pageTitle').innerText = target.querySelector('.nav-label').innerText;
-    
+
     if (window.innerWidth <= 768) document.getElementById('sidebar').classList.remove('open');
     refreshUI();
   });
@@ -175,7 +160,6 @@ document.getElementById('menuToggle').addEventListener('click', () => {
   document.getElementById('sidebar').classList.toggle('open');
 });
 
-// Toast System
 function showToast(message, type = 'success') {
   const container = document.getElementById('toastContainer');
   const toast = document.createElement('div');
@@ -188,15 +172,12 @@ function showToast(message, type = 'success') {
   }, 3000);
 }
 
-// Format Currency
 const formatRs = (val) => '₹' + val.toLocaleString('en-IN', { maximumFractionDigits: 0 });
-
-// ── Render Functions ──
 
 function renderFleet(filter = 'all', searchQuery = '') {
   const grid = document.getElementById('vehiclesGrid');
   grid.innerHTML = '';
-  
+
   let list = sys.fleet;
   if (filter === 'car') list = list.filter(v => v.type === 'Car');
   else if (filter === 'bike') list = list.filter(v => v.type === 'Bike');
@@ -237,7 +218,7 @@ function renderFleet(filter = 'all', searchQuery = '') {
 }
 
 function refreshUI() {
-  // Dashboard
+
   document.getElementById('stat-total').innerText = sys.fleet.length;
   const avail = sys.fleet.filter(v => v.isAvailable).length;
   document.getElementById('stat-available').innerText = avail;
@@ -245,7 +226,6 @@ function refreshUI() {
   document.getElementById('availableCount').innerText = avail;
   document.getElementById('stat-revenue').innerText = formatRs(sys.getRevenue());
 
-  // Dash Lists
   const dAvail = document.getElementById('dashAvailable');
   dAvail.innerHTML = sys.fleet.filter(v => v.isAvailable).slice(0,3).map(v => `
     <div class="list-item">
@@ -278,19 +258,16 @@ function refreshUI() {
     </div>
   `).join('');
 
-  // Fleet View
   renderFleet(document.querySelector('.filter-btn.active').dataset.filter, document.getElementById('globalSearch').value);
 
-  // Forms Selects
   const rentSel = document.getElementById('rentVehicleSelect');
   rentSel.innerHTML = '<option value="">— Choose an available vehicle —</option>' + 
     sys.fleet.filter(v => v.isAvailable).map(v => `<option value="${v.number}">${v.brand} (${v.number})</option>`).join('');
-    
+
   const retSel = document.getElementById('returnVehicleSelect');
   retSel.innerHTML = '<option value="">— Choose a rented vehicle —</option>' + 
     sys.fleet.filter(v => !v.isAvailable).map(v => `<option value="${v.number}">${v.brand} (${v.number}) - ${v.currentRental.renter}</option>`).join('');
 
-  // History Page
   document.getElementById('transactionList').innerHTML = sys.transactions.map(t => `
     <div class="list-item">
       <div>
@@ -309,9 +286,6 @@ function refreshUI() {
   `).join('');
 }
 
-// ── Event Listeners ──
-
-// Fleet Search & Filters
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -321,7 +295,6 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 document.getElementById('globalSearch').addEventListener('input', refreshUI);
 
-// Add Vehicle Logic
 document.querySelectorAll('.type-toggle').forEach(btn => {
   btn.addEventListener('click', (e) => {
     document.querySelectorAll('.type-toggle').forEach(b => b.classList.remove('active'));
@@ -337,7 +310,7 @@ document.getElementById('addSubmitBtn').addEventListener('click', () => {
   const num = document.getElementById('addVehicleNum').value.trim();
   const brand = document.getElementById('addBrand').value.trim();
   const price = document.getElementById('addBasePrice').value;
-  
+
   try {
     if(!num || !brand || !price) throw new Error("All base fields required.");
     let vehicle;
@@ -357,7 +330,6 @@ document.getElementById('addSubmitBtn').addEventListener('click', () => {
   } catch(e) { showToast(e.message, 'error'); }
 });
 
-// Rent Logic
 document.getElementById('rentVehicleSelect').addEventListener('change', (e) => {
   const val = e.target.value;
   const v = sys.fleet.find(x => x.number === val);
@@ -388,7 +360,6 @@ document.getElementById('rentSubmitBtn').addEventListener('click', () => {
   } catch(e) { showToast(e.message, 'error'); }
 });
 
-// Return Logic
 document.getElementById('returnSubmitBtn').addEventListener('click', () => {
   const num = document.getElementById('returnVehicleSelect').value;
   const actualDays = parseInt(document.getElementById('returnActualDays').value) || null;
@@ -396,7 +367,7 @@ document.getElementById('returnSubmitBtn').addEventListener('click', () => {
   try {
     if(!num) throw new Error("Select a vehicle.");
     const res = sys.returnVehicle(num, actualDays);
-    
+
     const bill = document.getElementById('returnBill');
     bill.classList.remove('hidden');
     bill.innerHTML = `
@@ -410,7 +381,6 @@ document.getElementById('returnSubmitBtn').addEventListener('click', () => {
   } catch(e) { showToast(e.message, 'error'); }
 });
 
-// Global Listeners
 document.getElementById('fleetAddBtn').addEventListener('click', () => document.getElementById('nav-add').click());
 document.getElementById('clearHistoryBtn').addEventListener('click', () => {
   sys.transactions = [];
@@ -419,5 +389,4 @@ document.getElementById('clearHistoryBtn').addEventListener('click', () => {
   showToast('History cleared.');
 });
 
-// Init
 refreshUI();

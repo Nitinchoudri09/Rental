@@ -1,20 +1,3 @@
-"""
-cli.py
-======
-RentalCLI — interactive text-based menu for the Vehicle Rental System.
-
-Menu options:
-    1. View all vehicles
-    2. View available vehicles
-    3. Search vehicles
-    4. Add vehicle
-    5. Rent a vehicle
-    6. Return a vehicle
-    7. View renter history
-    8. Remove vehicle
-    9. Save & Exit
-"""
-
 from __future__ import annotations
 
 from typing import Optional
@@ -34,22 +17,19 @@ from rental_system.models import Vehicle
 DIVIDER = "=" * 56
 THIN    = "-" * 56
 
-
 def _header(title: str) -> None:
-    """Print a formatted section header."""
+
     print(f"\n{DIVIDER}")
     print(f"  {title}")
     print(DIVIDER)
 
-
 def _prompt(msg: str, default: str = "") -> str:
-    """Prompt the user and strip whitespace. Return default if blank."""
+
     raw = input(f"  {msg}").strip()
     return raw if raw else default
 
-
 def _prompt_int(msg: str, min_val: int = 1, max_val: int = 9999) -> Optional[int]:
-    """Prompt for an integer within [min_val, max_val]. Returns None on error."""
+
     raw = _prompt(msg)
     try:
         val = int(raw)
@@ -61,9 +41,8 @@ def _prompt_int(msg: str, min_val: int = 1, max_val: int = 9999) -> Optional[int
         print("  [!] Invalid number.")
         return None
 
-
 def _display_list(vehicles: list[Vehicle], label: str) -> None:
-    """Print a list of vehicles with a label, or a 'none found' message."""
+
     if not vehicles:
         print(f"\n  (No {label} found.)")
         return
@@ -72,14 +51,7 @@ def _display_list(vehicles: list[Vehicle], label: str) -> None:
         v.display_details()
         print(THIN)
 
-
 class RentalCLI:
-    """
-    Text-based CLI that wraps RentalManager.
-
-    All user input is validated before being forwarded to the manager.
-    Exceptions raised by the manager are caught and shown as friendly messages.
-    """
 
     MENU = (
         "\n  VEHICLE RENTAL SYSTEM",
@@ -97,28 +69,19 @@ class RentalCLI:
     )
 
     def __init__(self, manager: RentalManager) -> None:
-        """
-        Initialise the CLI with a RentalManager instance.
 
-        Args:
-            manager: The RentalManager to delegate all operations to.
-        """
         self._mgr = manager
 
-    # ── Public entry point ────────────────────────────────────────────────────
-
     def run(self) -> None:
-        """Start the interactive menu loop. Exits when user chooses option 9."""
+
         print("\n  Welcome to the Vehicle Rental System!")
         while True:
             print("\n".join(self.MENU))
             choice = _prompt("Enter choice [1-9]: ")
             self._dispatch(choice)
 
-    # ── Dispatcher ────────────────────────────────────────────────────────────
-
     def _dispatch(self, choice: str) -> None:
-        """Route a menu choice to the appropriate handler."""
+
         handlers = {
             "1": self._view_all,
             "2": self._view_available,
@@ -136,20 +99,18 @@ class RentalCLI:
         else:
             print("  [!] Invalid choice. Please enter a number 1–9.")
 
-    # ── Handlers ──────────────────────────────────────────────────────────────
-
     def _view_all(self) -> None:
-        """Display every vehicle in the fleet."""
+
         _header("ALL VEHICLES")
         _display_list(self._mgr.list_all(), "vehicle(s)")
 
     def _view_available(self) -> None:
-        """Display only vehicles available for rent."""
+
         _header("AVAILABLE VEHICLES")
         _display_list(self._mgr.list_available(), "available vehicle(s)")
 
     def _search(self) -> None:
-        """Search vehicles by brand keyword or type."""
+
         _header("SEARCH VEHICLES")
         print("  Search by:")
         print("    B — Brand keyword")
@@ -177,7 +138,7 @@ class RentalCLI:
             print("  [!] Invalid search mode.")
 
     def _add_vehicle(self) -> None:
-        """Interactively add a new vehicle to the fleet."""
+
         _header("ADD VEHICLE")
         types = ", ".join(t.capitalize() for t in VehicleFactory.registered_types())
         vtype = _prompt(f"Vehicle type ({types}): ")
@@ -207,7 +168,6 @@ class RentalCLI:
             base_price_per_day=base_price,
         )
 
-        # Collect type-specific fields
         vtype_lower = vtype.lower()
         if vtype_lower == "car":
             seats = _prompt_int("Number of seats: ", 1, 50)
@@ -231,7 +191,7 @@ class RentalCLI:
             print(f"  [!] {e}")
 
     def _rent(self) -> None:
-        """Rent a vehicle to a customer."""
+
         _header("RENT A VEHICLE")
         num   = _prompt("Vehicle number: ").upper()
         name  = _prompt("Renter name: ")
@@ -253,7 +213,7 @@ class RentalCLI:
             print(f"  [!] {e}")
 
     def _return(self) -> None:
-        """Process a vehicle return."""
+
         _header("RETURN A VEHICLE")
         num = _prompt("Vehicle number: ").upper()
         if not num:
@@ -284,7 +244,7 @@ class RentalCLI:
             print(f"  [!] {e}")
 
     def _renter_history(self) -> None:
-        """Display all renters and their rental counts."""
+
         _header("RENTER HISTORY")
         history = self._mgr.renter_history()
         if not history:
@@ -297,7 +257,7 @@ class RentalCLI:
             print(f"  {name:<30} {count:>7}{loyalty}")
 
     def _remove_vehicle(self) -> None:
-        """Remove a vehicle from the fleet."""
+
         _header("REMOVE VEHICLE")
         num = _prompt("Vehicle number to remove: ").upper()
         if not num:
@@ -316,7 +276,7 @@ class RentalCLI:
             print(f"  [!] Cannot remove '{num}' — it is currently rented.")
 
     def _save_and_exit(self) -> None:
-        """Save the fleet to disk and exit the program."""
+
         self._mgr.save_fleet()
         print("\n  Fleet saved. Goodbye!\n")
         raise SystemExit(0)

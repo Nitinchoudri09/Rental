@@ -1,9 +1,3 @@
-"""
-rental_system/__init__.py
-=========================
-Package initialisation — exposes the public API surface.
-"""
-
 from rental_system.models import Vehicle, Car, Bike, RentalRecord
 from rental_system.factory import VehicleFactory
 from rental_system.manager import RentalManager

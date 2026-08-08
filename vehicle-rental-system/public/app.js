@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     fetchFleet();
 
-    // Setup Modal Close Handlers
     document.getElementById('close-modal').addEventListener('click', closeModal);
     document.getElementById('action-modal').addEventListener('click', (e) => {
         if (e.target === document.getElementById('action-modal')) closeModal();
@@ -11,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchFleet() {
     const grid = document.getElementById('fleet-grid');
     const status = document.getElementById('status-bar');
-    
+
     try {
         const response = await fetch('/api/vehicles');
         if (!response.ok) throw new Error('Failed to fetch data');
-        
+
         const data = await response.json();
         renderFleet(data.vehicles);
         status.innerHTML = `Loaded ${data.vehicles.length} vehicles from server.`;
@@ -28,12 +27,12 @@ async function fetchFleet() {
 
 function renderFleet(vehicles) {
     const grid = document.getElementById('fleet-grid');
-    grid.innerHTML = ''; // Clear current
+    grid.innerHTML = ''; 
 
     vehicles.forEach(v => {
         const card = document.createElement('div');
         card.className = `vehicle-card ${v.type.toLowerCase()}`;
-        
+
         const isAvailable = v.is_available;
         const buttonHtml = isAvailable 
             ? `<button class="btn btn-rent" onclick="openRentModal('${v.vehicle_number}', '${v.brand}')">Rent Vehicle</button>`
@@ -55,7 +54,6 @@ function renderFleet(vehicles) {
     });
 }
 
-// --- Modal Logic ---
 const modal = document.getElementById('action-modal');
 const modalTitle = document.getElementById('modal-title');
 const modalContent = document.getElementById('modal-content');
@@ -98,7 +96,7 @@ function openReturnModal(vNum, vBrand) {
 async function processRent(vNum) {
     const days = document.getElementById('rent-days').value;
     const btn = document.getElementById('submit-btn');
-    
+
     modalError.innerText = '';
     modalSuccess.innerText = '';
     btn.disabled = true;
@@ -110,14 +108,13 @@ async function processRent(vNum) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ vehicle_number: vNum, days: parseInt(days) })
         });
-        
+
         const result = await response.json();
         if (!response.ok || !result.success) throw new Error(result.error || 'Failed to rent');
-        
+
         modalSuccess.innerHTML = `${result.message}<br><strong>Total Charged: ₹${result.cost.toLocaleString()}</strong>`;
         btn.style.display = 'none';
-        
-        // Refresh grid
+
         setTimeout(() => {
             closeModal();
             fetchFleet();
@@ -132,7 +129,7 @@ async function processRent(vNum) {
 
 async function processReturn(vNum) {
     const btn = document.getElementById('submit-btn');
-    
+
     modalError.innerText = '';
     modalSuccess.innerText = '';
     btn.disabled = true;
@@ -144,14 +141,13 @@ async function processReturn(vNum) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ vehicle_number: vNum })
         });
-        
+
         const result = await response.json();
         if (!response.ok || !result.success) throw new Error(result.error || 'Failed to return');
-        
+
         modalSuccess.innerText = result.message;
         btn.style.display = 'none';
-        
-        // Refresh grid
+
         setTimeout(() => {
             closeModal();
             fetchFleet();

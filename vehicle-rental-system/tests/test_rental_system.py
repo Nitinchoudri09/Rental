@@ -6,12 +6,10 @@ from src.rental_system import RentalSystem
 class TestVehicleSystem(unittest.TestCase):
 
     def setUp(self):
-        """Set up a fresh RentalSystem for each test."""
+
         self.system = RentalSystem()
         self.car = Car("C100", "Honda City", 2000, 5)
         self.bike = Bike("B100", "Royal Enfield", 800, 350)
-
-    # --- Vehicle Creation Tests ---
 
     def test_car_creation_valid(self):
         self.assertEqual(self.car.vehicle_number, "C100")
@@ -36,22 +34,20 @@ class TestVehicleSystem(unittest.TestCase):
         with self.assertRaises(ValueError):
             Bike("B200", "Brand", 1000, -50)
 
-    # --- Rental Calculation Tests ---
-
     def test_car_rental_cost_no_discount(self):
-        # 3 days = 2000 * 3 = 6000
+
         self.assertEqual(self.car.calculate_rental_cost(3), 6000)
 
     def test_car_rental_cost_with_discount(self):
-        # 7 days = 2000 * 7 = 14000. 10% discount = 1400. Total = 12600.
+
         self.assertEqual(self.car.calculate_rental_cost(7), 12600)
 
     def test_bike_rental_cost_no_discount(self):
-        # 3 days = 800 * 3 = 2400
+
         self.assertEqual(self.bike.calculate_rental_cost(3), 2400)
 
     def test_bike_rental_cost_with_discount(self):
-        # 5 days = 800 * 5 = 4000. 5% discount = 200. Total = 3800.
+
         self.assertEqual(self.bike.calculate_rental_cost(5), 3800)
 
     def test_invalid_rental_days(self):
@@ -60,12 +56,10 @@ class TestVehicleSystem(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.bike.calculate_rental_cost(-5)
 
-    # --- Rental System Tests ---
-
     def test_add_vehicle(self):
         self.system.add_vehicle(self.car)
         self.assertEqual(self.system.total_vehicles, 1)
-        found = self.system.find_vehicle("c100") # Test case-insensitive
+        found = self.system.find_vehicle("c100") 
         self.assertIsNotNone(found)
         self.assertEqual(found.vehicle_number, "C100")
 

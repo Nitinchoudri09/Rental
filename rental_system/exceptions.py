@@ -1,22 +1,10 @@
-"""
-exceptions.py
-=============
-Custom exceptions for the Vehicle Rental System.
-Following SOLID principles, all error types are defined here so
-other modules import them without circular dependencies.
-"""
-
-
 class VehicleNotFoundError(Exception):
-    """Raised when a vehicle with the given number is not in the fleet."""
 
     def __init__(self, vehicle_number: str) -> None:
         super().__init__(f"Vehicle '{vehicle_number}' not found in fleet.")
         self.vehicle_number = vehicle_number
 
-
 class VehicleNotAvailableError(Exception):
-    """Raised when a vehicle is already rented out."""
 
     def __init__(self, vehicle_number: str) -> None:
         super().__init__(
@@ -24,9 +12,7 @@ class VehicleNotAvailableError(Exception):
         )
         self.vehicle_number = vehicle_number
 
-
 class InvalidRentalDurationError(Exception):
-    """Raised when rental days is zero or negative."""
 
     def __init__(self, days: int) -> None:
         super().__init__(
@@ -34,9 +20,7 @@ class InvalidRentalDurationError(Exception):
         )
         self.days = days
 
-
 class VehicleAlreadyExistsError(Exception):
-    """Raised when adding a vehicle whose number already exists in the fleet."""
 
     def __init__(self, vehicle_number: str) -> None:
         super().__init__(
@@ -44,9 +28,7 @@ class VehicleAlreadyExistsError(Exception):
         )
         self.vehicle_number = vehicle_number
 
-
 class VehicleNotRentedError(Exception):
-    """Raised when returning a vehicle that is not currently rented."""
 
     def __init__(self, vehicle_number: str) -> None:
         super().__init__(
@@ -54,9 +36,7 @@ class VehicleNotRentedError(Exception):
         )
         self.vehicle_number = vehicle_number
 
-
 class UnknownVehicleTypeError(Exception):
-    """Raised by VehicleFactory when an unregistered type string is given."""
 
     def __init__(self, vehicle_type: str) -> None:
         super().__init__(

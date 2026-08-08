@@ -12,7 +12,6 @@
 </head>
 <body>
 
-  <!-- ── Sidebar ─────────────────────────────────────────── -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <div class="logo-icon">🚗</div>
@@ -51,10 +50,8 @@
     </div>
   </aside>
 
-  <!-- ── Main Content ────────────────────────────────────── -->
   <main class="main-content">
 
-    <!-- Top bar -->
     <header class="topbar">
       <div class="topbar-left">
         <button class="menu-toggle" id="menuToggle">☰</button>
@@ -71,7 +68,6 @@
       </div>
     </header>
 
-    <!-- ── SECTION: Dashboard ──────────────────────────── -->
     <section class="section active" id="section-dashboard">
       <div class="stats-grid">
         <div class="stat-card stat-total">
@@ -109,7 +105,7 @@
       </div>
 
       <div class="dashboard-grid">
-        <!-- Available vehicles preview -->
+
         <div class="dash-card">
           <div class="dash-card-header">
             <h2 class="dash-card-title">Available Now</h2>
@@ -118,7 +114,6 @@
           <div class="mini-fleet" id="dashAvailable"></div>
         </div>
 
-        <!-- Rented vehicles -->
         <div class="dash-card">
           <div class="dash-card-header">
             <h2 class="dash-card-title">Currently Rented</h2>
@@ -126,7 +121,6 @@
           <div class="rented-list" id="dashRented"></div>
         </div>
 
-        <!-- Renter history -->
         <div class="dash-card">
           <div class="dash-card-header">
             <h2 class="dash-card-title">Top Renters</h2>
@@ -135,7 +129,6 @@
           <div id="dashRenters"></div>
         </div>
 
-        <!-- Pricing rules -->
         <div class="dash-card">
           <div class="dash-card-header">
             <h2 class="dash-card-title">Pricing Rules</h2>
@@ -166,7 +159,6 @@
       </div>
     </section>
 
-    <!-- ── SECTION: Fleet ──────────────────────────────── -->
     <section class="section" id="section-fleet">
       <div class="fleet-controls">
         <div class="filter-tabs">
@@ -185,7 +177,6 @@
       </div>
     </section>
 
-    <!-- ── SECTION: Rent ────────────────────────────────── -->
     <section class="section" id="section-rent">
       <div class="form-container">
         <div class="form-card">
@@ -234,7 +225,6 @@
       </div>
     </section>
 
-    <!-- ── SECTION: Return ─────────────────────────────── -->
     <section class="section" id="section-return">
       <div class="form-container">
         <div class="form-card">
@@ -272,7 +262,6 @@
       </div>
     </section>
 
-    <!-- ── SECTION: Add Vehicle ────────────────────────── -->
     <section class="section" id="section-add">
       <div class="form-container">
         <div class="form-card">
@@ -304,13 +293,11 @@
                 <input type="number" class="form-control" id="addBasePrice" min="1" placeholder="e.g. 800" />
               </div>
 
-              <!-- Car field -->
               <div class="form-group" id="carField">
                 <label class="form-label" for="addSeats">Number of Seats</label>
                 <input type="number" class="form-control" id="addSeats" min="1" max="50" placeholder="e.g. 5" />
               </div>
 
-              <!-- Bike field -->
               <div class="form-group hidden" id="bikeField">
                 <label class="form-label" for="addEngineCC">Engine CC</label>
                 <input type="number" class="form-control" id="addEngineCC" min="1" placeholder="e.g. 200" />
@@ -325,7 +312,6 @@
       </div>
     </section>
 
-    <!-- ── SECTION: History ────────────────────────────── -->
     <section class="section" id="section-history">
       <div class="history-grid">
         <div class="dash-card">
@@ -346,10 +332,8 @@
 
   </main>
 
-  <!-- ── Toast Notifications ──────────────────────────── -->
   <div class="toast-container" id="toastContainer"></div>
 
-  <!-- ── Confirm Modal ────────────────────────────────── -->
   <div class="modal-overlay hidden" id="confirmModal">
     <div class="modal">
       <h3 id="confirmTitle">Confirm Action</h3>
