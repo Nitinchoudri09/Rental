@@ -1,0 +1,59 @@
+{
+  "fleet": [
+    {
+      "type": "Car",
+      "vehicle_number": "KA-01-AB-1234",
+      "brand": "Maruti Swift",
+      "base_price_per_day": 800.0,
+      "is_available": true,
+      "current_rental": null,
+      "seats": 5
+    },
+    {
+      "type": "Car",
+      "vehicle_number": "MH-12-CD-5678",
+      "brand": "Toyota Innova",
+      "base_price_per_day": 1500.0,
+      "is_available": true,
+      "current_rental": null,
+      "seats": 8
+    },
+    {
+      "type": "Car",
+      "vehicle_number": "DL-03-EF-0011",
+      "brand": "Hyundai Creta",
+      "base_price_per_day": 1200.0,
+      "is_available": true,
+      "current_rental": null,
+      "seats": 5
+    },
+    {
+      "type": "Bike",
+      "vehicle_number": "DL-05-GH-9012",
+      "brand": "Honda Activa 6G",
+      "base_price_per_day": 200.0,
+      "is_available": true,
+      "current_rental": null,
+      "engine_cc": 110
+    },
+    {
+      "type": "Bike",
+      "vehicle_number": "TN-09-IJ-3456",
+      "brand": "KTM Duke 200",
+      "base_price_per_day": 400.0,
+      "is_available": true,
+      "current_rental": null,
+      "engine_cc": 200
+    },
+    {
+      "type": "Bike",
+      "vehicle_number": "RJ-14-KL-7890",
+      "brand": "Royal Enfield Classic 350",
+      "base_price_per_day": 500.0,
+      "is_available": true,
+      "current_rental": null,
+      "engine_cc": 350
+    }
+  ],
+  "renter_history": {}
+}

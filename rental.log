@@ -1,0 +1,112 @@
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | INFO     | Fleet: removed TEST-CAR-001
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | INFO     | RENTED  | TEST-CAR-001 → Alice | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | INFO     | RENTED  | TEST-CAR-001 → Alice | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | INFO     | RENTED  | TEST-CAR-001 → Alice | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | INFO     | RENTED  | TEST-CAR-001 → Alice | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:11 | INFO     | RETURNED| TEST-CAR-001 ← Alice | actual 3 day(s) | rental Rs.2850.00 | penalty Rs.0.00 | total Rs.2850.00
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:11 | INFO     | RENTED  | TEST-CAR-001 → Alice | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:11 | INFO     | RETURNED| TEST-CAR-001 ← Alice | actual 5 day(s) | rental Rs.4750.00 | penalty Rs.400.00 | total Rs.5150.00
+2026-08-08 19:51:11 | DEBUG    | Fleet: added C-001 (Brand)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added C-002 (Brand)
+2026-08-08 19:51:11 | INFO     | RENTED  | C-001 → Bob | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:11 | INFO     | RETURNED| C-001 ← Bob | actual 3 day(s) | rental Rs.2850.00 | penalty Rs.0.00 | total Rs.2850.00
+2026-08-08 19:51:11 | INFO     | RENTED  | C-002 → Bob | 3 day(s) | Rs.2850.00 [loyalty discount]
+2026-08-08 19:51:11 | DEBUG    | Fleet: added C-001 (Brand)
+2026-08-08 19:51:11 | INFO     | RENTED  | C-001 → Bob | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:11 | DEBUG    | Persistence: no data file found — starting fresh.
+2026-08-08 19:51:11 | DEBUG    | Fleet: added P-001 (PersistCar)
+2026-08-08 19:51:11 | DEBUG    | Fleet: added P-002 (PersistBike)
+2026-08-08 19:51:11 | DEBUG    | Persistence: fleet saved to C:\Users\HP\AppData\Local\Temp\tmpqi2zsni2.json
+2026-08-08 19:51:11 | INFO     | Persistence: loaded 2 vehicle(s) from C:\Users\HP\AppData\Local\Temp\tmpqi2zsni2.json
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | INFO     | Fleet: removed TEST-CAR-001
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | INFO     | RENTED  | TEST-CAR-001 → Alice | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | INFO     | RENTED  | TEST-CAR-001 → Alice | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | INFO     | RENTED  | TEST-CAR-001 → Alice | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | INFO     | RENTED  | TEST-CAR-001 → Alice | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:36 | INFO     | RETURNED| TEST-CAR-001 ← Alice | actual 3 day(s) | rental Rs.2850.00 | penalty Rs.0.00 | total Rs.2850.00
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-CAR-001 (TestBrand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added TEST-BIKE-001 (TestBike)
+2026-08-08 19:51:36 | INFO     | RENTED  | TEST-CAR-001 → Alice | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:36 | INFO     | RETURNED| TEST-CAR-001 ← Alice | actual 5 day(s) | rental Rs.4750.00 | penalty Rs.400.00 | total Rs.5150.00
+2026-08-08 19:51:36 | DEBUG    | Fleet: added C-001 (Brand)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added C-002 (Brand)
+2026-08-08 19:51:36 | INFO     | RENTED  | C-001 → Bob | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:36 | INFO     | RETURNED| C-001 ← Bob | actual 3 day(s) | rental Rs.2850.00 | penalty Rs.0.00 | total Rs.2850.00
+2026-08-08 19:51:36 | INFO     | RENTED  | C-002 → Bob | 3 day(s) | Rs.2850.00 [loyalty discount]
+2026-08-08 19:51:36 | DEBUG    | Fleet: added C-001 (Brand)
+2026-08-08 19:51:36 | INFO     | RENTED  | C-001 → Bob | 3 day(s) | Rs.3000.00
+2026-08-08 19:51:36 | DEBUG    | Persistence: no data file found — starting fresh.
+2026-08-08 19:51:36 | DEBUG    | Fleet: added P-001 (PersistCar)
+2026-08-08 19:51:36 | DEBUG    | Fleet: added P-002 (PersistBike)
+2026-08-08 19:51:36 | DEBUG    | Persistence: fleet saved to C:\Users\HP\AppData\Local\Temp\tmpcnnjluub.json
+2026-08-08 19:51:36 | INFO     | Persistence: loaded 2 vehicle(s) from C:\Users\HP\AppData\Local\Temp\tmpcnnjluub.json
+2026-08-08 19:52:25 | DEBUG    | Persistence: no data file found — starting fresh.
+2026-08-08 19:52:25 | DEBUG    | Fleet: added KA-01-AB-1234 (Maruti Swift)
+2026-08-08 19:52:25 | DEBUG    | Fleet: added MH-12-CD-5678 (Toyota Innova)
+2026-08-08 19:52:25 | DEBUG    | Fleet: added DL-03-EF-0011 (Hyundai Creta)
+2026-08-08 19:52:25 | DEBUG    | Fleet: added DL-05-GH-9012 (Honda Activa 6G)
+2026-08-08 19:52:25 | DEBUG    | Fleet: added TN-09-IJ-3456 (KTM Duke 200)
+2026-08-08 19:52:25 | DEBUG    | Fleet: added RJ-14-KL-7890 (Royal Enfield Classic 350)
+2026-08-08 19:52:25 | DEBUG    | Persistence: fleet saved to data/fleet.json
